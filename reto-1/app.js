@@ -1,48 +1,39 @@
 "use strict";
 exports.__esModule = true;
 var fs = require("fs");
-var fileName = './reto-1/users.txt';
-var fileContent = fs.readFileSync(fileName, 'utf8');
-var campos = ['usr', 'eme', 'psw', 'age', 'loc', 'fll'];
-var strline = '';
+var fileName = "./reto-1/users.txt";
+var fileContent = fs.readFileSync(fileName, "utf8");
+var campos = ["usr", "eme", "psw", "age", "loc", "fll"];
+var strline = "";
+var user = "";
 var cantidad = 0;
-var usuarios = [];
-fileContent.split('\n').forEach(function (line) {
-    if (line == '') {
-        //console.log(strline);
-        usuarios.push(strline);
-        //let cont = 0;
-        // strline.split(' ').forEach((val) => {
-        //     let par = val.split(':');
-        //     let k = par.at(0);            
-        //     if (k != '' ) {
-        //         campos.forEach((campo) => {
-        //             if (campo == k) {
-        //                 cont++;
-        //             }
-        //         })
-        //     }        
-        // });     
-        // if (cont >= campos.length) {
-        //     console.log("SI: " + cont);
-        //     cantidad++;
-        // }
-        strline = '';
+fileContent.split("\n").forEach(function (line) {
+    if (line == "") {
+        var cont_1 = 0;
+        var tmpusr_1 = "";
+        strline.split(" ").forEach(function (val) {
+            var par = val.split(":");
+            var k = par.at(0);
+            if (k != "") {
+                campos.forEach(function (campo) {
+                    if (campo == k) {
+                        cont_1++;
+                        if (campo == "usr") {
+                            tmpusr_1 = par.at(1);
+                        }
+                    }
+                });
+            }
+        });
+        if (cont_1 >= campos.length) {
+            //console.log("SI: " + cont);
+            cantidad++;
+            user = tmpusr_1;
+        }
+        strline = "";
     }
     else {
-        strline += ' ' + line;
+        strline += " " + line;
     }
 });
-usuarios.forEach(function (value) {
-    console.log(value.split(' ').entries().next().value);
-    // let cont = 0;
-    // campos.forEach((campo) => {
-    //     if (value.includes(campo+':')) {
-    //         cont++;
-    //     }
-    // });
-    // if (cont >= 6) {
-    //     cantidad++;
-    // }
-});
-console.log(cantidad);
+console.log(cantidad + user);
