@@ -6,37 +6,15 @@ let fileContent = fs.readFileSync(fileName, "utf8");
 const campos = ["usr", "eme", "psw", "age", "loc", "fll"];
 
 let strline: string = "";
-let user: string | undefined = "";
+let user;
 let cantidad: number = 0;
+let usuarios: Array<string> = [];
 
-fileContent.split("\n").forEach((line) => {
-  if (line == "") {
-    let cont = 0;
-    let tmpusr: string | undefined = "";
-    strline.split(" ").forEach((val) => {
-      let par = val.split(":");
-      let k = par.at(0);
-      if (k != "") {
-        campos.forEach((campo) => {
-          if (campo == k) {
-            cont++;
-            if (campo == "usr") {
-              tmpusr = par.at(1);
-            }
-          }
-        });
-      }
-    });
+usuarios = fileContent.split("\n\n").filter(value => campos.every(camp => value.includes(camp)));
+cantidad = usuarios.length;
+strline = usuarios[cantidad - 1];
 
-    if (cont >= campos.length) {
-      //console.log("SI: " + cont);
-      cantidad++;
-      user = tmpusr;
-    }
-    strline = "";
-  } else {
-    strline += " " + line;
-  }
-});
+user = strline.split(/\n|\s/).map((chunk: string) => chunk.split(":"));
+const map = new Map(user);
 
-console.log(cantidad+user);
+console.log(cantidad.toString() + map.get('usr'));
