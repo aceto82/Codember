@@ -5,20 +5,17 @@ for (var ini = 11099; ini < fin; ini++) {
     var val = ini.toString();
     var okpass = true;
     var num5 = 0;
-    var ant = val.charAt(0);
-    if (ant == '5') {
-        num5++;
-    }
-    for (var k = 1; k < 5; k++) {
-        var element = val.charAt(k);
-        if (element == '5') {
+    var ant = '0';
+    for (var _i = 0, val_1 = val; _i < val_1.length; _i++) {
+        var chr = val_1[_i];
+        if (chr == '5') {
             num5++;
         }
-        if (parseInt(ant) > parseInt(element)) {
+        if (parseInt(ant) > parseInt(chr)) {
             okpass = false;
             break;
         }
-        ant = element;
+        ant = chr;
     }
     if (num5 >= 2 && okpass) {
         if (index == 55) {
