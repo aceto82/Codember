@@ -5,7 +5,7 @@ var fileName = "./2023/reto-3/encryption_policies.txt";
 var fileContent = fs.readFileSync(fileName, "utf8");
 var cant = 0;
 var imprimir = '';
-var FINAL_COUNT = 42;
+var FINAL_COUNT = 13;
 fileContent.trim().split('\n').forEach(function (v) {
     var data = v.split(':');
     var regla = data[0].trim();

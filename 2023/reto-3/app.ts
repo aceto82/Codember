@@ -5,7 +5,7 @@ let fileContent = fs.readFileSync(fileName, "utf8");
 
 let cant: number = 0;
 let imprimir: string = '';
-const FINAL_COUNT: number = 42;
+const FINAL_COUNT: number = 13;
 fileContent.trim().split('\n').forEach((v: string) => {
     const data = v.split(':');
     const regla = data[0].trim();
